@@ -1,0 +1,30 @@
+test_addi	PASSED 
+test_add	PASSED
+test_addiu	PASSED
+test_addu	PASSED
+test_and	PASSED
+test_b		PASSED
+test_beq	PASSED
+test_bgtz	PASSED
+test_blez	PASSED
+test_bne	PASSED
+test_div	PASSED (mais le compilateur rajoute un bne->faire smem)	
+test_j		
+test_jal	PASSED 
+test_jr		PASSED
+test_lb		
+test_lbu	PASSED
+test_lui	PASSED
+test_lw		PASSED
+test_mfhi	PASSED
+test_mflo	PASSED	
+test_mult	PASSED
+test_ori	PASSED
+test_or		
+test_sb		
+test_sll	
+test_srl	
+test_slt	
+test_sub
+test_syscal	
+test_xor	

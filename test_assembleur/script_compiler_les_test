@@ -1,0 +1,11 @@
+#! /bin/sh
+
+mkdir -p fichier.o
+mkdir -p fichierexec
+for file in ./fichier.s/*.s; do
+    mips-elf-as $file -o ./fichier.o/$(basename $file .s).o
+ done
+
+for file in ./fichier.o/*.o; do
+    mips-elf-ld $file -o ./fichierexec/$(basename $file .o)
+ done

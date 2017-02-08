@@ -1,0 +1,48 @@
+#! /bin/sh
+
+(echo ".set noreorder"
+echo ".global _start      # Exportation du point d'entree (symbole global)"
+echo ".text"
+echo "_start:             # Point d'entree" ) > test_hi.s
+
+(echo "addi \$t1,\$0,255") >> test_hi.s
+
+compteur=0
+
+while [ $compteur -ne 1600 ]
+do
+    (echo "lw \$t0,x"$compteur"") >> test_hi.s
+    (echo "sw \$t1,0(\$t0)") >> test_hi.s
+    compteur=$(($compteur+1))
+done
+
+(echo "end:") >> test_hi.s
+
+(echo ".data") >> test_hi.s
+
+compteur=0
+col0=4294903296
+col=$col0
+for i in $(seq 1 4)
+do
+    while [ $compteur -ne $((200*$i)) ]
+    do
+	(echo "x"$compteur": .word "$col) >> test_hi.s
+	col=$(($col+320))
+	compteur=$(($compteur+1))
+    done
+    col=$(($col0+$i))
+done
+
+col1=4294903336
+col=$col1
+for i in $(seq 5 8)
+do
+    while [ $compteur -ne $((200*$i)) ]
+    do
+	(echo "x"$compteur": .word "$col) >> test_hi.s
+	col=$(($col+320))
+	compteur=$(($compteur+1))
+    done
+    col=$(($col1+$i))
+done
